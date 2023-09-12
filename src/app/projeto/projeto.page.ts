@@ -5,11 +5,11 @@ import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fir
 import { MessageService } from '../services/message.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-projeto',
+  templateUrl: 'projeto.page.html',
+  styleUrls: ['projeto.page.scss'],
 })
-export class HomePage {
+export class ProjetoPage {
   isLoading: boolean = false;
 
   alunos = [];
@@ -31,6 +31,26 @@ export class HomePage {
     public storage: Storage,
     private _message: MessageService
   ) { }
+  
+  funcionarios: any;
+
+  getFuncionarios(){
+    this.isLoading = true;
+    fetch('http://localhost/API/funcionarios/listar.php')
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+    })
+    .catch(erro => {
+      console.log(erro);
+    })
+    .finally(()=>{
+      this.isLoading = false;
+    })
+  }
+  
+
+
 
   criarConta(dados: any){
     this._authenticate.register(dados.email, dados.password)

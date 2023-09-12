@@ -1,0 +1,73 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="">
+        <ion-title>
+          Funcionarios
+        </ion-title>
+      </ion-col>
+      <ion-col>
+        <ion-button>Inserir</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  
+  <!-- FORMULÁRIO PARA INSERIR UM NOVO ALUNO -->
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <form #inserirAlunoForm="ngForm" (ngSubmit)="inserirAluno(inserirAlunoForm.value)">
+        <ion-item lines="none">
+          <ion-label>Inserir Novo Aluno</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Usuário" name="nome" ngModel type="text"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-button color="light" slot="end" type="submit">Inserir Aluno</ion-button>
+        </ion-item>
+      </form>
+    </ion-col>
+  </ion-row>
+
+
+  <!-- LISTAR TODOS ALUNOS -->
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <ion-item lines="none">
+        <ion-button color="light" slot="end" (click)="getFuncionarios()">Listar Alunos</ion-button>
+      </ion-item>
+      <ng-container *ngFor="let aluno of this.Funcionarios">
+        <h1>Nome: {{ aluno['nome'] }}</h1>
+        <h1>Idade: {{ aluno['idade'] }}</h1>
+      </ng-container>
+    </ion-col>
+  </ion-row>
+
+
+  <!-- FORMULÁRIO PARA REMOVER ALUNO -->
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-lg="6">
+      <ng-container *ngFor="let aluno of this.alunos">
+        <form (ngSubmit)="removerAluno(aluno)">
+          <ion-item>
+            <ion-label>Nome do Aluno: {{ aluno['nome'] }}</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-button color="light" slot="end" type="submit">Remover Aluno</ion-button>
+          </ion-item>
+        </form>
+      </ng-container>
+    </ion-col>
+  </ion-row>
+
+
+
+
+
+  
+
+</ion-content>
