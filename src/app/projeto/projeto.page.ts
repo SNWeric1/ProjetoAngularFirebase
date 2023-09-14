@@ -11,26 +11,12 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['projeto.page.scss'],
 })
 export class ProjetoPage {
-  isLoading: boolean = false;
-
-  alunos = [];
-
-  nome = 'Joaozinho';
-
-  aluno = {
-    nome: null,
-    idade: null,
-    ra: null,
-    id: null
-  }
-
-  public file: any = {};
 
   constructor(
   ) {
     this.getFuncionarios();
-   }
-  
+   } 
+
   funcionarios: any;
   getFuncionarios(){
     fetch('http://localhost/API/funcionarios/listar.php')
@@ -42,4 +28,5 @@ export class ProjetoPage {
       console.log(erro);
     })
   }
+  delFuncionario(){}
 }
